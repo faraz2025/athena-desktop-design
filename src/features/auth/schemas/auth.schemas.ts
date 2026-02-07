@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const mobileSchema = z.object({
     mobileNumber: z
-        .string()
-        .min(10, "Mobile number is required")
+        .string("Mobile number is required")
+        .min(10, "Mobile number must be 10 digits")
         .regex(/^\+?\d{10,15}$/, "Invalid mobile number"),
 });
 

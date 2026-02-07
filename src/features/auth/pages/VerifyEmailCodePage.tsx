@@ -1,10 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ShieldCheck } from "lucide-react";
 import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Form,
@@ -28,6 +28,11 @@ const VerifyEmailCodePage = () => {
   const verifyEmailVerificationMutation = useVerifyEmailVerification();
 
   const emailFromUrl = searchParams.get("email");
+
+  const onBack = () => {
+    localStorage.removeItem(EMAIL_STORAGE_KEY);
+    navigate("/verify-email", { replace: true });
+  };
 
   const email = useMemo(() => {
     if (emailFromUrl) return emailFromUrl;
@@ -68,17 +73,16 @@ const VerifyEmailCodePage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md shadow-xl pt-0 rounded-xl overflow-hidden">
-        <CardHeader className="bg-primary text-primary-foreground text-center p-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-foreground/20">
-            <ShieldCheck className="h-8 w-8 text-primary" />
-          </div>
-          <h1 className="text-3xl font-bold">Enter verification code</h1>
-          <p className="text-sm text-primary-foreground/80">
-            We sent a 6-digit code to your email. Enter it below to verify.
+        <CardHeader className=" px-8 pt-8 pb-0">
+          <h1 className="text-3xl text-primary font-bold">Enter verification code</h1>
+          <p className="text-sm">
+            Sent to <span className="font-semibold">{email}</span>
           </p>
         </CardHeader>
 
-        <CardContent className="p-8">
+
+
+        <CardContent className="px-8">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -108,6 +112,16 @@ const VerifyEmailCodePage = () => {
               >
                 Verify email
               </LoaderButton>
+
+
+              <Button
+                type="button"
+                className="w-full"
+                onClick={onBack}
+                variant={"secondary"}
+              >
+                Back to Email
+              </Button>
             </form>
           </Form>
         </CardContent>
