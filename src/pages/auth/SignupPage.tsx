@@ -37,24 +37,24 @@ const SignupPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
-                <div className="bg-slate-900 p-8 text-center">
-                    <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-                        <HardHat className="text-amber-500 w-8 h-8" />
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
+            <div className="bg-card rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
+                <div className="bg-primary p-8 text-center text-primary-foreground">
+                    <div className="bg-primary-foreground/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                        <HardHat className="w-8 h-8 text-primary" />
                     </div>
-                    <h1 className="text-3xl font-bold text-white mb-2">Start Building</h1>
-                    <p className="text-slate-400">Create your project manager account</p>
+                    <h1 className="text-3xl font-bold mb-2">Start Building</h1>
+                    <p className="text-muted-foreground/80">Create your project manager account</p>
                 </div>
 
                 <div className="p-8">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                            <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
                             <input
                                 type="text"
                                 required
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-background text-foreground"
                                 placeholder="John Doe"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -62,11 +62,11 @@ const SignupPage = () => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                            <label className="block text-sm font-medium text-foreground mb-1">Email Address</label>
                             <input
                                 type="email"
                                 required
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-background text-foreground"
                                 placeholder="you@company.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -74,11 +74,11 @@ const SignupPage = () => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                            <label className="block text-sm font-medium text-foreground mb-1">Password</label>
                             <input
                                 type="password"
                                 required
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition-all"
+                                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-background text-foreground"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -88,7 +88,7 @@ const SignupPage = () => {
                         <button
                             type="submit"
                             disabled={signupMutation.isPending}
-                            className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
                         >
                             {signupMutation.isPending ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -100,9 +100,9 @@ const SignupPage = () => {
                         </button>
                     </form>
 
-                    <div className="mt-6 text-center text-sm text-slate-500">
+                    <div className="mt-6 text-center text-sm text-muted-foreground">
                         Already have an account?{' '}
-                        <Link to="/login" className="text-slate-900 hover:text-slate-800 font-semibold">
+                        <Link to="/login" className="text-foreground hover:text-foreground/80 font-semibold">
                             Sign In
                         </Link>
                     </div>

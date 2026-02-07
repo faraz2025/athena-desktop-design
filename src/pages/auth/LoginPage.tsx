@@ -37,24 +37,24 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
-                <div className="bg-orange-500 p-8 text-center">
-                    <div className="bg-white/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-                        <HardHat className="text-white w-8 h-8" />
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
+            <div className="bg-card rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
+                <div className="bg-primary p-8 text-center text-primary-foreground">
+                    <div className="bg-primary-foreground/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                        <HardHat className="w-8 h-8 text-primary" />
                     </div>
-                    <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-                    <p className="text-orange-100">Login to manage your sites</p>
+                    <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
+                    <p className="text-muted-foreground/80">Login to manage your sites</p>
                 </div>
 
                 <div className="p-8">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Email Address</label>
+                            <label className="block text-sm font-medium text-foreground mb-1">Email Address</label>
                             <input
                                 type="email"
                                 required
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
+                                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-background text-foreground"
                                 placeholder="you@company.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -62,11 +62,11 @@ const LoginPage = () => {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                            <label className="block text-sm font-medium text-foreground mb-1">Password</label>
                             <input
                                 type="password"
                                 required
-                                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
+                                className="w-full px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-background text-foreground"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -76,7 +76,7 @@ const LoginPage = () => {
                         <button
                             type="submit"
                             disabled={loginMutation.isPending}
-                            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
                         >
                             {loginMutation.isPending ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -86,9 +86,9 @@ const LoginPage = () => {
                         </button>
                     </form>
 
-                    <div className="mt-6 text-center text-sm text-slate-500">
+                    <div className="mt-6 text-center text-sm text-muted-foreground">
                         Don't have an account?{' '}
-                        <Link to="/signup" className="text-orange-600 hover:text-orange-700 font-semibold">
+                        <Link to="/signup" className="text-primary hover:text-primary/90 font-semibold">
                             Create Account
                         </Link>
                     </div>
