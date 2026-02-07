@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { loginSuccess } from '@/store/slices/authSlice';
 import { useMutation } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../store/authSlice';
-import apiClient from '../../api/apiClient';
-import { useNavigate, Link } from 'react-router-dom';
 import { HardHat, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');

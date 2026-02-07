@@ -1,15 +1,15 @@
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logout } from '../store/authSlice';
 import {
-    LayoutDashboard,
     HardHat,
-    Pickaxe,
-    Users,
+    LayoutDashboard,
     LogOut,
-    Menu
+    Menu,
+    Pickaxe,
+    Users
 } from 'lucide-react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { logout } from '../store/slices/authSlice';
 
 const MainLayout = () => {
     const location = useLocation();
@@ -55,8 +55,8 @@ const MainLayout = () => {
                                     <Link
                                         to={item.path}
                                         className={`flex items-center p-3 rounded-lg transition-all duration-200 group ${isActive
-                                                ? 'bg-primary text-primary-foreground shadow-md'
-                                                : 'text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+                                            ? 'bg-primary text-primary-foreground shadow-md'
+                                            : 'text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                                             } ${!isSidebarOpen && 'justify-center'}`}
                                     >
                                         <Icon className={`w-5 h-5 ${isSidebarOpen && 'mr-3'}`} />

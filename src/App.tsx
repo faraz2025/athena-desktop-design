@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import MainLayout from './components/MainLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 import { useMobileDetect } from './hooks/useMobileDetect';
 import MobileLandingPage from './pages/MobileLandingPage';
 import LoginPage from './pages/auth/LoginPage';
 import SignupPage from './pages/auth/SignupPage';
-import MainLayout from './components/MainLayout';
-import ProtectedRoute from './components/ProtectedRoute';
 import DashboardPage from './pages/dashboard/DashboardPage';
-import ProjectsPage from './pages/projects/ProjectsPage';
-import MaterialsPage from './pages/materials/MaterialsPage';
 import LaborPage from './pages/labor/LaborPage';
+import MaterialsPage from './pages/materials/MaterialsPage';
+import ProjectsPage from './pages/projects/ProjectsPage';
 
 function App() {
   const isMobile = useMobileDetect();

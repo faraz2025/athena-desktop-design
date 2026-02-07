@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { ArrowRight, HardHat, Loader2 } from 'lucide-react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../store/authSlice';
-import apiClient from '../../api/apiClient';
-import { useNavigate, Link } from 'react-router-dom';
-import { HardHat, ArrowRight, Loader2 } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginSuccess } from '../../store/slices/authSlice';
 
 const SignupPage = () => {
     const [name, setName] = useState('');

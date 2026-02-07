@@ -1,29 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+export type DeviceType = "mobile" | "tablet" | "desktop";
 
 export const useMobileDetect = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const deviceType = useDeviceType();
+  return deviceType !== "desktop";
+};
+
+export const useDeviceType = (): DeviceType => {
+  const [device, setDevice] = useState<DeviceType>("desktop");
 
   useEffect(() => {
-    const checkMobile = () => {
-      const userAgent =
-        typeof window.navigator === 'undefined' ? '' : navigator.userAgent;
-      
-      const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-      const isMobileUA = mobileRegex.test(userAgent);
-      
-      const isSmallScreen = window.innerWidth <= 768;
+    const detectDevice = () => {
+      if (typeof window === "undefined") return;
 
-      setIsMobile(isMobileUA || isSmallScreen);
+      const width = window.innerWidth;
+
+      let deviceType: DeviceType;
+
+      if ((width >= 640 && width <= 1024)) {
+        deviceType = "tablet";
+      } else if (width < 640) {
+        deviceType = "mobile";
+      } else {
+        deviceType = "desktop";
+      }
+
+      setDevice(deviceType);
     };
 
-    checkMobile();
-    
-    window.addEventListener('resize', checkMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
+    detectDevice();
+    window.addEventListener("resize", detectDevice);
+
+    return () => window.removeEventListener("resize", detectDevice);
   }, []);
 
-  return isMobile;
+  return device;
 };
+
