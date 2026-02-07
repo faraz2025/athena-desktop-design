@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { LoaderButton } from "@/components/ui/loader-button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
     Form,
@@ -15,6 +14,9 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { LoaderButton } from "@/components/ui/loader-button";
+import { onError } from "@/lib/utils";
+import { toast } from "sonner";
 import { OtpForm } from "../components/OtpForm";
 import { useSendOtp } from "../hooks/useAuth";
 import { mobileSchema, type MobileFormValues } from "../schemas/auth.schemas";
@@ -41,8 +43,10 @@ const LoginPage = () => {
             {
                 onSuccess: () => {
                     setMobileNumber(values.mobileNumber);
+                    toast.success("OTP sent successfully");
                     setStep("otp");
                 },
+                onError: onError
             }
         );
     };
@@ -94,6 +98,7 @@ const LoginPage = () => {
                         <OtpForm
                             mobileNumber={mobileNumber}
                             onSuccess={() => navigate("/")}
+                            onBack={() => setStep("mobile")}
                         />
                     )}
                 </CardContent>

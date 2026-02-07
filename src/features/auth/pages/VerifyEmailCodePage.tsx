@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 
-import { LoaderButton } from "@/components/ui/loader-button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Form,
@@ -16,6 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { LoaderButton } from "@/components/ui/loader-button";
+import { onError } from "@/lib/utils";
 import { useVerifyEmailVerification } from "../hooks/useAuth";
 import { emailCodeSchema, type EmailCodeFormValues } from "../schemas/auth.schemas";
 
@@ -59,6 +60,7 @@ const VerifyEmailCodePage = () => {
           localStorage.removeItem(EMAIL_STORAGE_KEY);
           navigate("/", { replace: true });
         },
+        onError: onError
       },
     );
   };

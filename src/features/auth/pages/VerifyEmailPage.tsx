@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { LoaderButton } from "@/components/ui/loader-button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Form,
@@ -15,6 +14,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { LoaderButton } from "@/components/ui/loader-button";
+import { onError } from "@/lib/utils";
 import { useAuthState, useSendEmailVerification } from "../hooks/useAuth";
 import { emailVerificationSchema, type EmailVerificationFormValues } from "../schemas/auth.schemas";
 
@@ -43,6 +44,7 @@ const VerifyEmailPage = () => {
           toast.success("Verification email sent");
           navigate(`/verify-email/code?email=${encodeURIComponent(values.email)}`);
         },
+        onError: onError
       },
     );
   };

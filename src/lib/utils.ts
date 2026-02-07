@@ -1,5 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
+import { toast } from "sonner"
 import { twMerge } from "tailwind-merge"
+import { extractErrorMessage } from "./error-extractor"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -26,3 +28,8 @@ export const formatDateTime = (date: string | null | undefined) => {
     second: '2-digit'
   })
 }
+
+export const onError = (error: unknown) => {
+  const message = extractErrorMessage(error);
+  toast.error(message);
+};
