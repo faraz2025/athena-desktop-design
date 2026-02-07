@@ -1,4 +1,5 @@
-import { useCurrentUser } from "@/features/auth/useAuth"
+import { useCurrentUser } from "@/features/auth/hooks/useAuth"
+
 
 function VerifySession() {
 

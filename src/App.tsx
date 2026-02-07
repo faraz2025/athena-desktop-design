@@ -1,11 +1,12 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import MainLayout from './components/MainLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import { PublicRoute } from './components/PublicRoute';
 import VerifySession from './components/common/VerifySession';
+import LoginPage from './features/auth/pages/LoginPage';
 import { useMobileDetect } from './hooks/useMobileDetect';
 import MobileLandingPage from './pages/MobileLandingPage';
-import LoginPage from './pages/auth/LoginPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import LaborPage from './pages/labor/LaborPage';
 import MaterialsPage from './pages/materials/MaterialsPage';
@@ -47,6 +48,7 @@ function App() {
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Toaster richColors />
     </BrowserRouter>
   );
 }

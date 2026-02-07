@@ -1,4 +1,4 @@
-import { useLogout } from '@/features/auth/useAuth';
+import { useLogout } from '@/features/auth/hooks/useAuth';
 import {
     HardHat,
     LayoutDashboard,
