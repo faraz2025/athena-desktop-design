@@ -9,7 +9,9 @@ import RecentActivityPage from './features/activity/pages/RecentActivityPage';
 import LoginPage from './features/auth/pages/LoginPage';
 import VerifyEmailCodePage from './features/auth/pages/VerifyEmailCodePage';
 import VerifyEmailPage from './features/auth/pages/VerifyEmailPage';
+import ChatLayout from './features/chat/layout/ChatLayout';
 import ChatPage from './features/chat/pages/ChatPage';
+import ProjectChatPage from './features/chat/pages/ProjectChatPage';
 import DashboardPage from './features/dashboard/pages/DashboardPage';
 import DocumentsPage from './features/documents/pages/DocumentsPage';
 import ExpensesPage from './features/expenses/pages/ExpensesPage';
@@ -90,10 +92,14 @@ function App() {
           <Route path="tasks/add" element={<AddTaskPage />} />
           <Route path="tasks/:id" element={<TaskDetailPage />} />
           <Route path="expenses" element={<ExpensesPage />} />
+          <Route path="chat" element={<ChatLayout />}>
+            <Route index element={<ChatPage />} />
+            <Route path=":projectId" element={<ProjectChatPage />} />
+          </Route>
           <Route path="notifications" element={<NotificationsPage />} />
           <Route path="profile" element={<ProfilePage />} />
 
-          <Route path="chat" element={<ChatPage />} />
+
           <Route path="documents" element={<DocumentsPage />} />
           <Route path="activity" element={<RecentActivityPage />} />
           <Route path="vendors" element={<VendorsPage />} />
