@@ -60,7 +60,7 @@ export const FirmTypeStep = ({ initialValue, onNext }: FirmTypeStepProps) => {
 
     return (
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-4  gap-5">
                 {firmTypeOptions.map((option) => {
                     const Icon = option.icon;
                     const isSelected = selected === option.value;
@@ -70,9 +70,9 @@ export const FirmTypeStep = ({ initialValue, onNext }: FirmTypeStepProps) => {
                             key={option.value}
                             className={`
                                 relative p-5 cursor-pointer transition-all duration-300
-                                hover:shadow-lg hover:scale-[1.02] hover:border-primary/50
+                                hover:shadow-lg hover:border-primary/50
                                 ${isSelected
-                                    ? 'border-2 border-primary bg-primary/5 shadow-md'
+                                    ? ' border-primary bg-primary/5 shadow-md'
                                     : 'border border-border hover:bg-accent/50'
                                 }
                             `}

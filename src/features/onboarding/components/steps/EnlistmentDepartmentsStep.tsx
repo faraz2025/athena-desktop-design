@@ -71,7 +71,7 @@ export const EnlistmentDepartmentsStep = ({ initialData, onNext }: EnlistmentDep
                                     </div>
                                 )}
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                                <div className="grid grid-cols-2  gap-5">
                                     <FormField
                                         control={form.control}
                                         name={`departments.${index}.department`}
@@ -83,7 +83,7 @@ export const EnlistmentDepartmentsStep = ({ initialData, onNext }: EnlistmentDep
                                                     defaultValue={field.value}
                                                 >
                                                     <FormControl>
-                                                        <SelectTrigger className="h-11">
+                                                        <SelectTrigger className="h-11 w-full">
                                                             <SelectValue placeholder="Select department" />
                                                         </SelectTrigger>
                                                     </FormControl>
@@ -107,7 +107,7 @@ export const EnlistmentDepartmentsStep = ({ initialData, onNext }: EnlistmentDep
                                             <FormItem>
                                                 <FormLabel>Expiry Date</FormLabel>
                                                 <FormControl>
-                                                    <Input type="date" className="h-11" {...field} />
+                                                    <Input type="text" className="h-11" {...field} placeholder="Enter expiry date (YYYY-MM-DD)" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>

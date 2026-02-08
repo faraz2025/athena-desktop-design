@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { updateOnboardingData } from "@/store/slices/onboardingSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Percent, TrendingUp } from "lucide-react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { shareTypeSchema, type ShareTypeFormValues } from "../../schemas/onboarding.schemas";
 import { ShareType } from "../../types/onboarding.types";
@@ -27,18 +28,19 @@ const shareTypeOptions = [
     },
 ];
 
-export const ShareTypeStep = ({ initialValue, onNext }: ShareTypeStepProps) => {
-    const [selected, setSelected] = useState<ShareType | undefined>(initialValue);
+export const ShareTypeStep = ({ onNext }: ShareTypeStepProps) => {
+    const dispatch = useAppDispatch();
+    const selected = useAppSelector((state) => state.onboarding.onboardingData.shareType);
 
     const form = useForm<ShareTypeFormValues>({
         resolver: zodResolver(shareTypeSchema),
         defaultValues: {
-            shareType: initialValue,
+            shareType: selected,
         },
     });
 
     const handleSelect = (value: ShareType) => {
-        setSelected(value);
+        dispatch(updateOnboardingData({ shareType: value }));
         form.setValue("shareType", value);
     };
 
@@ -48,7 +50,7 @@ export const ShareTypeStep = ({ initialValue, onNext }: ShareTypeStepProps) => {
 
     return (
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2  gap-5">
                 {shareTypeOptions.map((option) => {
                     const Icon = option.icon;
                     const isSelected = selected === option.value;
@@ -58,9 +60,9 @@ export const ShareTypeStep = ({ initialValue, onNext }: ShareTypeStepProps) => {
                             key={option.value}
                             className={`
                                 relative p-6 cursor-pointer transition-all duration-300
-                                hover:shadow-lg hover:scale-[1.02] hover:border-primary/50
+                                hover:shadow-lg hover:border-primary/50
                                 ${isSelected
-                                    ? 'border-2 border-primary bg-primary/5 shadow-md'
+                                    ? 'border border-primary bg-primary/5 shadow-md'
                                     : 'border border-border hover:bg-accent/50'
                                 }
                             `}

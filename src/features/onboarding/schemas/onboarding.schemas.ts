@@ -48,7 +48,7 @@ export const firmDetailsSchema = z.object({
     ,
     epfo: z.string().max(50, "EPFO must be less than 50 characters").optional(),
     esic: z.string().max(50, "ESIC must be less than 50 characters").optional(),
-    tan: z.preprocess((val) => (val === "" ? undefined : val), z.string().length(10, "TAN must be exactly 10 characters").optional()),
+    tan: z.string().max(50, "TAN must be less than 50 characters").optional(),
 });
 
 export const departmentSelectionSchema = z

@@ -2,10 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
     completeStep,
-    selectCompletedSteps,
     selectCurrentStep,
     selectOnboardingData,
-    selectOnboardingProgress,
     startOnboarding
 } from "@/store/slices/onboardingSlice";
 import { CheckCircle2 } from "lucide-react";
@@ -30,9 +28,8 @@ const OnboardingPage = () => {
     const dispatch = useDispatch();
 
     const currentStep = useSelector(selectCurrentStep);
-    const completedSteps = useSelector(selectCompletedSteps);
     const onboardingData = useSelector(selectOnboardingData);
-    const progress = useSelector(selectOnboardingProgress);
+
 
     const handleStepComplete = (stepData: Partial<OnboardingData>) => {
         dispatch(completeStep(stepData));
@@ -202,14 +199,12 @@ const OnboardingPage = () => {
                             )}
                         </div>
 
-                        {currentStep !== OnboardingStep.COMPLETED && (
-                            <div className="mt-5">
-                                <ProgressStepper
-                                    currentStep={currentStep}
-                                    completedSteps={completedSteps}
-                                />
-                            </div>
-                        )}
+
+                        <div className="mt-5">
+                            <ProgressStepper
+                            />
+                        </div>
+
                     </CardHeader>
                     <CardContent>
                         {renderStep()}

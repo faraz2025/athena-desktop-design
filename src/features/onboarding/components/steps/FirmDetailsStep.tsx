@@ -13,10 +13,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Building2, CreditCard, FileText } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { firmDetailsSchema, type FirmDetailsFormValues } from "../../schemas/onboarding.schemas";
-import type { OnboardingData } from "../../types/onboarding.types";
+
+
 
 interface FirmDetailsStepProps {
-    initialData?: OnboardingData['firmDetails'];
+    initialData?: FirmDetailsFormValues;
     onNext: (data: FirmDetailsFormValues) => void;
 }
 
@@ -40,9 +41,9 @@ export const FirmDetailsStep = ({ initialData, onNext }: FirmDetailsStepProps) =
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7 gap-x-4 grid grid-cols-2">
                 {/* Basic Information */}
-                <Card className="border-primary/20">
+                <Card className="border-primary/20 col-span-2">
                     <CardHeader className="pb-4">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -86,7 +87,7 @@ export const FirmDetailsStep = ({ initialData, onNext }: FirmDetailsStepProps) =
                 </Card>
 
                 {/* Tax Information */}
-                <Card className="border-accent/20">
+                <Card className="border-primary/20">
                     <CardHeader className="pb-4">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
@@ -99,7 +100,7 @@ export const FirmDetailsStep = ({ initialData, onNext }: FirmDetailsStepProps) =
                         </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                        <div className="grid grid-cols-2  gap-5">
                             <FormField
                                 control={form.control}
                                 name="gstin"
@@ -132,7 +133,7 @@ export const FirmDetailsStep = ({ initialData, onNext }: FirmDetailsStepProps) =
                 </Card>
 
                 {/* Additional Information */}
-                <Card className="border-muted">
+                <Card className="border-primary/20">
                     <CardHeader className="pb-4">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
@@ -191,7 +192,7 @@ export const FirmDetailsStep = ({ initialData, onNext }: FirmDetailsStepProps) =
                     </CardContent>
                 </Card>
 
-                <div className="flex justify-end">
+                <div className="flex justify-end col-span-2">
                     <Button
                         type="submit"
                         className="h-11 px-8 min-w-[180px]"

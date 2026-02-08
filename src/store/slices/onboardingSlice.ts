@@ -23,21 +23,18 @@ const initialState: OnboardingState = {
 };
 
 // Helper to calculate total value for progress bar
-const calculateProgress = (step: OnboardingStep): number => {
-    // Approximate progress mapping
-    const stepWeights: Record<OnboardingStep, number> = {
-        [OnboardingStep.NOT_STARTED]: 0,
-        [OnboardingStep.SELECT_OCCUPATION]: 10,
-        [OnboardingStep.OWNERSHIP_TYPE]: 30,
-        [OnboardingStep.SHARE_IN_PROJECT]: 45,
-        [OnboardingStep.TYPE_OF_FIRM]: 60,
-        [OnboardingStep.FIRM_TYPE_INPUT]: 70,
-        [OnboardingStep.FIRM_DETAILS]: 80,
-        [OnboardingStep.ENLISTMENT_DEPARTMENTS]: 90,
-        [OnboardingStep.COMPLETED]: 100,
-    };
-    return stepWeights[step] || 0;
+export const calculateProgress = (
+    currentStep: OnboardingStep,
+    visibleSteps: OnboardingStep[]
+): number => {
+    const index = visibleSteps.indexOf(currentStep);
+
+    if (index === -1) return 0;
+    if (visibleSteps.length === 1) return 100;
+
+    return Math.round((index / (visibleSteps.length - 1)) * 100);
 };
+
 
 // Helper to determine next step logic (moved from OnboardingPage)
 const getNextStep = (
@@ -99,38 +96,71 @@ const getNextStep = (
     return OnboardingStep.COMPLETED;
 };
 
+// onboarding.utils.ts
+export const getVisibleSteps = (data: OnboardingData): OnboardingStep[] => {
+    const steps: OnboardingStep[] = [
+        OnboardingStep.SELECT_OCCUPATION,
+    ];
+
+    if (data.occupation === OccupationType.GOVERNMENT_CONTRACTOR) {
+        steps.push(OnboardingStep.OWNERSHIP_TYPE);
+
+        if (data.ownershipType === OwnershipType.PARTNERSHIP) {
+
+            steps.push(
+                OnboardingStep.SHARE_IN_PROJECT,
+                OnboardingStep.TYPE_OF_FIRM
+            );
+
+            if (data.firmType === FirmType.OTHER) {
+                steps.push(OnboardingStep.FIRM_TYPE_INPUT);
+            }
+
+            steps.push(
+                OnboardingStep.FIRM_DETAILS,
+                OnboardingStep.ENLISTMENT_DEPARTMENTS
+            );
+        }
+    }
+
+
+    steps.push(OnboardingStep.COMPLETED);
+
+    return steps;
+};
+
+
 export const onboardingSlice = createSlice({
     name: 'onboarding',
     initialState,
     reducers: {
         startOnboarding: (state) => {
             state.currentStep = OnboardingStep.SELECT_OCCUPATION;
-            state.progress = calculateProgress(OnboardingStep.SELECT_OCCUPATION);
+            state.progress = calculateProgress(OnboardingStep.SELECT_OCCUPATION, getVisibleSteps(state.onboardingData));
         },
         setStep: (state, action: PayloadAction<OnboardingStep>) => {
             state.currentStep = action.payload;
-            state.progress = calculateProgress(action.payload);
+            state.progress = calculateProgress(action.payload, getVisibleSteps(state.onboardingData));
         },
         updateOnboardingData: (state, action: PayloadAction<Partial<OnboardingData>>) => {
             state.onboardingData = { ...state.onboardingData, ...action.payload };
+            state.progress = calculateProgress(state.currentStep, getVisibleSteps(state.onboardingData));
         },
         completeStep: (state, action: PayloadAction<Partial<OnboardingData> | undefined>) => {
-            // 1. Update Data
             if (action.payload) {
                 state.onboardingData = { ...state.onboardingData, ...action.payload };
             }
 
-            // 2. Mark current as completed if not already
             if (!state.completedSteps.includes(state.currentStep)) {
                 state.completedSteps.push(state.currentStep);
             }
 
-            // 3. Determine Next Step
             const nextStep = getNextStep(state.currentStep, state.onboardingData);
             state.currentStep = nextStep;
 
-            // 4. Update Progress
-            state.progress = calculateProgress(nextStep);
+            const visibleSteps = getVisibleSteps(state.onboardingData);
+
+            state.progress = calculateProgress(nextStep, visibleSteps);
         },
         resetOnboarding: () => {
             return initialState;
@@ -144,5 +174,10 @@ export const selectCurrentStep = (state: RootState) => state.onboarding.currentS
 export const selectCompletedSteps = (state: RootState) => state.onboarding.completedSteps;
 export const selectOnboardingData = (state: RootState) => state.onboarding.onboardingData;
 export const selectOnboardingProgress = (state: RootState) => state.onboarding.progress;
+export const selectVisibleSteps = (state: RootState) =>
+    getVisibleSteps(state.onboarding.onboardingData);
+
+export const selectProgress = (state: RootState) =>
+    state.onboarding.progress;
 
 export default onboardingSlice.reducer;

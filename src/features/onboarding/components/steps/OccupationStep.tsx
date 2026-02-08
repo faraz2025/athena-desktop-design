@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { updateOnboardingData } from "@/store/slices/onboardingSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Briefcase, Building2, Hammer, Palette, Users } from "lucide-react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { occupationSchema, type OccupationFormValues } from "../../schemas/onboarding.schemas";
 import { OccupationType } from "../../types/onboarding.types";
@@ -52,7 +53,9 @@ const occupationOptions = [
 ];
 
 export const OccupationStep = ({ initialValue, onNext }: OccupationStepProps) => {
-    const [selected, setSelected] = useState<OccupationType | undefined>(initialValue);
+    const dispatch = useAppDispatch();
+
+    const selected = useAppSelector((state) => state.onboarding.onboardingData.occupation);
 
     const form = useForm<OccupationFormValues>({
         resolver: zodResolver(occupationSchema),
@@ -61,9 +64,10 @@ export const OccupationStep = ({ initialValue, onNext }: OccupationStepProps) =>
         },
     });
 
+
     const handleSelect = (value: OccupationType) => {
-        setSelected(value);
         form.setValue("occupation", value);
+        dispatch(updateOnboardingData({ occupation: value }));
     };
 
     const onSubmit = (values: OccupationFormValues) => {
