@@ -5,12 +5,14 @@ import {
     AlertCircle,
     ArrowUpRight,
     BarChart3,
+    Building,
     Calendar,
     Clock,
+    FileIcon,
     FolderOpen,
+    ListCheck,
     Package,
-    TrendingUp,
-    Users
+    TrendingUp
 } from "lucide-react";
 
 const DashboardPage = () => {
@@ -60,10 +62,10 @@ const DashboardPage = () => {
     ];
 
     const quickActions = [
-        { label: "Create Project", icon: FolderOpen, description: "Start a new construction project" },
-        { label: "Add Material", icon: Package, description: "Log new material inventory" },
-        { label: "Add Worker", icon: Users, description: "Register new team member" },
-        { label: "View Reports", icon: BarChart3, description: "Access analytics & insights" },
+        { label: "New Project", icon: Building, description: "Start a new construction project" },
+        { label: "Add Task", icon: ListCheck, description: "Assign tasks to team members" },
+        { label: "Reports", icon: BarChart3, description: "Generate project reports" },
+        { label: "Documents", icon: FileIcon, description: "Upload project documents" },
     ];
 
     return (
@@ -111,9 +113,62 @@ const DashboardPage = () => {
                 })}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="space-y-4">
+                <Card className="shadow-md">
+                    <CardHeader className="">
+                        <CardTitle className="text-xl font-semibold">
+                            Quick Actions
+                        </CardTitle>
+                    </CardHeader>
+
+                    <CardContent>
+                        <div className="grid grid-cols-4 gap-4">
+                            {quickActions.map((action, i) => {
+                                const Icon = action.icon
+
+                                return (
+                                    <Button
+                                        key={i}
+                                        variant="outline"
+                                        className="
+              h-auto p-4 justify-start text-left
+              transition-all duration-200
+              hover:bg-primary/5 hover:border-primary/50
+              hover:-translate-y-0.5 hover:shadow-sm
+              focus-visible:ring-2 focus-visible:ring-primary/40
+              group
+            "
+                                    >
+                                        <div className="flex items-start gap-3 w-full">
+                                            <div
+                                                className="
+                  w-10 h-10 shrink-0 rounded-lg
+                  bg-primary/10
+                  flex items-center justify-center
+                  transition-colors
+                  group-hover:bg-primary/20
+                "
+                                            >
+                                                <Icon className="w-5 h-5 text-primary" />
+                                            </div>
+
+                                            <div className="flex-1 min-w-0">
+                                                <p className="font-semibold text-sm text-foreground leading-tight">
+                                                    {action.label}
+                                                </p>
+                                                <p className="text-xs text-muted-foreground mt-1 leading-snug">
+                                                    {action.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </Button>
+                                )
+                            })}
+                        </div>
+                    </CardContent>
+                </Card>
                 {/* Recent Projects */}
-                <Card className="lg:col-span-2 shadow-md">
+                <Card className="shadow-md">
                     <CardHeader>
                         <div className="flex items-center justify-between">
                             <div>
@@ -152,8 +207,8 @@ const DashboardPage = () => {
                                     <div className="ml-4">
                                         <span
                                             className={`px-3 py-1 rounded-full text-xs font-medium ${project.status === "On Track"
-                                                    ? "bg-green-100 text-green-700"
-                                                    : "bg-orange-100 text-orange-700"
+                                                ? "bg-green-100 text-green-700"
+                                                : "bg-orange-100 text-orange-700"
                                                 }`}
                                         >
                                             {project.status}
@@ -166,40 +221,7 @@ const DashboardPage = () => {
                 </Card>
 
                 {/* Quick Actions */}
-                <Card className="shadow-md">
-                    <CardHeader>
-                        <CardTitle className="text-xl">Quick Actions</CardTitle>
-                        <CardDescription>Common tasks</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="space-y-3">
-                            {quickActions.map((action, i) => {
-                                const Icon = action.icon;
-                                return (
-                                    <Button
-                                        key={i}
-                                        variant="outline"
-                                        className="w-full h-auto py-3 px-4 justify-start hover:bg-primary/5 hover:border-primary/50 transition-all group"
-                                    >
-                                        <div className="flex items-start gap-3 text-left">
-                                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                                                <Icon className="w-5 h-5 text-primary" />
-                                            </div>
-                                            <div className="flex-1">
-                                                <p className="font-semibold text-sm text-foreground">
-                                                    {action.label}
-                                                </p>
-                                                <p className="text-xs text-muted-foreground mt-0.5">
-                                                    {action.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </Button>
-                                );
-                            })}
-                        </div>
-                    </CardContent>
-                </Card>
+
             </div>
 
             {/* Chart Placeholder */}

@@ -1,13 +1,14 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlertCircle, Calendar, MoreHorizontal, Plus } from "lucide-react";
 import { useState } from "react";
@@ -70,16 +71,6 @@ const TasksPage = () => {
                     <p className="text-muted-foreground">Manage and track your project tasks</p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <div className="flex -space-x-2">
-                        {[1, 2, 3].map((i) => (
-                            <Avatar key={i} className="h-8 w-8 border-2 border-background">
-                                <AvatarFallback className="text-xs bg-primary/10 text-primary">U{i}</AvatarFallback>
-                            </Avatar>
-                        ))}
-                        <div className="h-8 w-8 rounded-full border-2 border-background bg-secondary flex items-center justify-center text-xs text-muted-foreground font-medium">
-                            +4
-                        </div>
-                    </div>
                     <Button onClick={() => navigate("/tasks/add")} className="gap-2">
                         <Plus className="h-4 w-4" />
                         Add Task
@@ -89,26 +80,19 @@ const TasksPage = () => {
 
             {/* Project Filter */}
             {projectNames.length > 0 && (
-                <Card>
-                    <CardHeader className="pb-3">
-                        <CardTitle className="text-base font-medium">Filter by Project</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <Tabs
-                            value={selectedProject}
-                            onValueChange={(val) => setSelectedProject(val)}
-                            className="w-full"
-                        >
-                            <TabsList className="grid w-full grid-cols-3 bg-secondary/30">
-                                {projectNames.map((name) => (
-                                    <TabsTrigger key={name} value={name}>
-                                        {name}
-                                    </TabsTrigger>
-                                ))}
-                            </TabsList>
-                        </Tabs>
-                    </CardContent>
-                </Card>
+
+                <Select value={selectedProject} onValueChange={setSelectedProject}>
+                    <SelectTrigger className="h-10 w-full">
+                        <SelectValue placeholder="Select project" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {projectNames.map((project) => (
+                            <SelectItem key={project} value={project}>
+                                {project}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             )}
 
             {/* Tasks Board */}

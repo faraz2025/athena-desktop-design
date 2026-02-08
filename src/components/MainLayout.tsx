@@ -43,13 +43,13 @@ const MainLayout = () => {
     ];
 
     return (
-        <div className="flex min-h-screen bg-background overflow-hidden font-sans">
+        <div className="flex min-h-screen bg-white overflow-hidden font-sans">
             {/* Sidebar */}
             <aside
                 className={`${isSidebarOpen ? 'w-64' : 'w-20'
                     } bg-sidebar text-sidebar-foreground transition-all duration-300 flex flex-col shadow-xl z-20`}
             >
-                <div className="px-4  h-16 flex items-center justify-between border-b border-sidebar-border">
+                <div className="px-4 bg-white h-16 flex items-center justify-between border-b border-sidebar-border">
                     <div className={`flex items-center space-x-3 ${!isSidebarOpen && 'justify-center w-full'}`}>
                         <div className="bg-primary p-2 rounded-lg">
                             <HardHat className="w-6 h-6 text-primary-foreground" />
@@ -104,7 +104,12 @@ const MainLayout = () => {
                         <Menu className="w-5 h-5" />
                     </button>
 
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-6">
+                        <Link to="/notifications" className='relative inline-block rounded-2xl hover:bg-muted p-2 transition-colors'>
+                            <Bell className="w-5 h-5 text-muted-foreground" />
+                            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-destructive rounded-full">3</span>
+                        </Link>
+
                         <div className="flex items-center space-x-2">
                             <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-secondary-foreground font-bold border border-border">
                                 JD
@@ -124,7 +129,7 @@ const MainLayout = () => {
                     <Outlet />
                 </div>
             </main>
-        </div>
+        </div >
     );
 };
 

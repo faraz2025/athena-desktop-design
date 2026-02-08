@@ -183,7 +183,7 @@ const TaskDetailPage = () => {
                             <div className="space-y-2">
                                 <Label>Priority</Label>
                                 <Select value={priority} onValueChange={setPriority}>
-                                    <SelectTrigger className="h-11">
+                                    <SelectTrigger className="h-11 w-full">
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -197,7 +197,7 @@ const TaskDetailPage = () => {
                             <div className="space-y-2">
                                 <Label>Status</Label>
                                 <Select value={status} onValueChange={setStatus}>
-                                    <SelectTrigger className="h-11">
+                                    <SelectTrigger className="h-11 w-full">
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>

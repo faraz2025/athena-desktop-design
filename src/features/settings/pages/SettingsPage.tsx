@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,7 +17,7 @@ const SettingsPage = () => {
                 <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
                     <TabsTrigger value="general" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-6 py-3">General</TabsTrigger>
                     <TabsTrigger value="notifications" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-6 py-3">Notifications</TabsTrigger>
-                    <TabsTrigger value="security" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-6 py-3">Security</TabsTrigger>
+                    {/* <TabsTrigger value="security" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-6 py-3">Security</TabsTrigger> */}
                 </TabsList>
 
                 <div className="mt-6">
@@ -52,14 +51,14 @@ const SettingsPage = () => {
                                 <CardDescription>Choose what you want to be notified about</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
-                                <div className="flex items-center justify-between p-2 border rounded">
+                                <div className="flex items-center justify-between p-2 border rounded-md">
                                     <div className="flex items-center gap-2">
                                         <Bell className="h-4 w-4" />
                                         <span>Email Notifications</span>
                                     </div>
                                     <span className="text-primary font-bold">On</span>
                                 </div>
-                                <div className="flex items-center justify-between p-2 border rounded">
+                                <div className="flex items-center justify-between p-2 border rounded-md">
                                     <div className="flex items-center gap-2">
                                         <Bell className="h-4 w-4" />
                                         <span>Push Notifications</span>
@@ -70,7 +69,7 @@ const SettingsPage = () => {
                         </Card>
                     </TabsContent>
 
-                    <TabsContent value="security">
+                    {/* <TabsContent value="security">
                         <Card>
                             <CardHeader>
                                 <CardTitle>Security Settings</CardTitle>
@@ -88,7 +87,7 @@ const SettingsPage = () => {
                                 <Button>Change Password</Button>
                             </CardContent>
                         </Card>
-                    </TabsContent>
+                    </TabsContent> */}
                 </div>
             </Tabs>
         </div>
