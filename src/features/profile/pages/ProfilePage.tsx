@@ -1,7 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Building2, Crown, LogOut, Mail, Phone, Settings, User } from "lucide-react";
 
 const mockUser = {
@@ -29,7 +29,7 @@ const ProfilePage = () => {
                 <p className="text-muted-foreground">Manage your account and preferences</p>
             </div>
 
-            <div className="max-w-4xl space-y-6">
+            <div className=" space-y-6">
                 {/* Profile Header */}
                 <Card className="border-none shadow-sm bg-gradient-to-br from-primary/10 to-primary/5">
                     <CardContent className="p-6">
@@ -86,7 +86,7 @@ const ProfilePage = () => {
                             </div>
                         </div>
 
-                        <Button variant="outline" className="w-full md:w-auto">
+                        <Button variant="outline" className="w-full">
                             Edit Profile
                         </Button>
                     </CardContent>
@@ -114,7 +114,7 @@ const ProfilePage = () => {
                 </Card>
 
                 {/* Logout */}
-                <Button variant="destructive" className="w-full md:w-auto">
+                <Button variant="destructive" className="w-full">
                     <LogOut className="mr-2 h-4 w-4" />
                     Log Out
                 </Button>
