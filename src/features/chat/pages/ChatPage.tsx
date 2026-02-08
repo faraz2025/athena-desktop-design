@@ -1,8 +1,8 @@
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Send, Search, Phone, Video } from "lucide-react";
+import { Phone, Search, Send, Video } from "lucide-react";
 
 const ChatPage = () => {
     return (

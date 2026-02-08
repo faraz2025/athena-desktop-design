@@ -1,8 +1,8 @@
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
     Select,
     SelectContent,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Calendar, FileText, Flag, Paperclip, User, X } from "lucide-react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // Mock task data
 const mockTask = {
@@ -37,7 +37,6 @@ const mockTask = {
 
 const TaskDetailPage = () => {
     const navigate = useNavigate();
-    const { id } = useParams();
 
     const [priority, setPriority] = useState(mockTask.priority);
     const [status, setStatus] = useState(mockTask.status);

@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Activity, FileCheck, MessageSquare, AlertCircle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { AlertCircle, FileCheck, MessageSquare } from "lucide-react";
 
 const RecentActivityPage = () => {
     const activities = [

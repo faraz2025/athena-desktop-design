@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; // Updated import to use correct components
-import { Bell, Lock, User, Globe } from "lucide-react";
-import { Switch } from "@/components/ui/switch"; // Assuming you might have a Switch component, if not, I'll use a checkbox or button for toggle visuals for now, but commonly Shadcn has Switch. I will assume Switch is not there and use a simple UI or just text for now to be safe, or check if I can check for Switch. Re-reading: I should stick to standard HTML or simple components if I'm not sure. I'll use standard inputs for toggles or simple checkboxes for now to avoid missing component errors, or wait... I can create a simple Switch-like button. Let's use simple toggles for now.
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Bell } from "lucide-react";
+
 
 const SettingsPage = () => {
     return (

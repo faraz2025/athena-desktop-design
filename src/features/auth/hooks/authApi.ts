@@ -34,6 +34,7 @@ export interface User {
 }
 
 export const sendOtp = async (payload: SendOtpPayload): Promise<void> => {
+  console.log("Sending OTP to:", payload.mobileNumber);
   // await api.post<void>(ENDPOINTS.AUTH.SEND_OTP, payload);
   // Mocking API response for development
   await new Promise((resolve) => {
@@ -44,6 +45,7 @@ export const sendOtp = async (payload: SendOtpPayload): Promise<void> => {
 };
 
 export const verifyOtp = async (payload: VerifyOtpPayload): Promise<void> => {
+  console.log("Verifying OTP for:", payload.mobileNumber);
   // await api.post<void>(ENDPOINTS.AUTH.VERIFY_OTP, payload);
   // Mocking API response for development
   localStorage.setItem("mock_token", "mock_access_token");
@@ -55,6 +57,7 @@ export const verifyOtp = async (payload: VerifyOtpPayload): Promise<void> => {
 };
 
 export const sendEmailVerification = async (payload: SendEmailVerificationPayload): Promise<void> => {
+  console.log("Sending email verification to:", payload.email);
   // await api.post<void>(ENDPOINTS.AUTH.SEND_EMAIL_VERIFICATION, payload);
   // Mocking API response for development
   await new Promise((resolve) => {
@@ -65,6 +68,7 @@ export const sendEmailVerification = async (payload: SendEmailVerificationPayloa
 };
 
 export const verifyEmailVerification = async (payload: VerifyEmailVerificationPayload): Promise<void> => {
+  console.log("Verifying email for:", payload.email);
   // await api.post<void>(ENDPOINTS.AUTH.VERIFY_EMAIL_VERIFICATION, payload);
   // Mocking API response for development
   await new Promise((resolve) => {
