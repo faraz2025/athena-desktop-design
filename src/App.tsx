@@ -11,10 +11,23 @@ import VerifyEmailPage from './features/auth/pages/VerifyEmailPage';
 import OnboardingPage from './features/onboarding/pages/OnboardingPage';
 import { useMobileDetect } from './hooks/useMobileDetect';
 import MobileLandingPage from './pages/MobileLandingPage';
+import RecentActivityPage from './pages/activity/RecentActivityPage';
+import ChatPage from './pages/chat/ChatPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
-import LaborPage from './pages/labor/LaborPage';
-import MaterialsPage from './pages/materials/MaterialsPage';
+import DocumentsPage from './pages/documents/DocumentsPage';
+import ExpensesPage from './pages/expenses/ExpensesPage';
+import NotificationsPage from './pages/notifications/NotificationsPage';
+import ProfilePage from './pages/profile/ProfilePage';
+import CreateProjectPage from './pages/projects/CreateProjectPage';
 import ProjectsPage from './pages/projects/ProjectsPage';
+import ReportsPage from './pages/reports/ReportsPage';
+import SettingsPage from './pages/settings/SettingsPage';
+import SubscriptionPage from './pages/subscription/SubscriptionPage';
+import AddTaskPage from './pages/tasks/AddTaskPage';
+import TaskDetailPage from './pages/tasks/TaskDetailPage';
+import TasksPage from './pages/tasks/TasksPage';
+import VendorsPage from './pages/vendors/VendorsPage';
+
 
 function App() {
   const isMobile = useMobileDetect();
@@ -69,8 +82,21 @@ function App() {
         >
           <Route index element={<DashboardPage />} />
           <Route path="projects" element={<ProjectsPage />} />
-          <Route path="materials" element={<MaterialsPage />} />
-          <Route path="labor" element={<LaborPage />} />
+          <Route path="projects/create" element={<CreateProjectPage />} />
+          <Route path="tasks" element={<TasksPage />} />
+          <Route path="tasks/add" element={<AddTaskPage />} />
+          <Route path="tasks/:id" element={<TaskDetailPage />} />
+          <Route path="expenses" element={<ExpensesPage />} />
+          <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+
+          <Route path="chat" element={<ChatPage />} />
+          <Route path="documents" element={<DocumentsPage />} />
+          <Route path="activity" element={<RecentActivityPage />} />
+          <Route path="vendors" element={<VendorsPage />} />
+          <Route path="reports" element={<ReportsPage />} />
+          <Route path="subscription" element={<SubscriptionPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
 
         {/* Fallback */}

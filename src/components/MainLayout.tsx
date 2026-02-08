@@ -1,10 +1,18 @@
 import { useLogout } from '@/features/auth/hooks/useAuth';
 import {
+    Activity,
+    BarChart,
+    Bell,
+    CreditCard,
+    FileText,
     HardHat,
     LayoutDashboard,
     LogOut,
     Menu,
+    MessageSquare,
     Pickaxe,
+    Settings,
+    Store,
     Users
 } from 'lucide-react';
 import { useState } from 'react';
@@ -26,6 +34,16 @@ const MainLayout = () => {
         { path: '/projects', label: 'Projects', icon: HardHat },
         { path: '/materials', label: 'Materials', icon: Pickaxe },
         { path: '/labor', label: 'Labor', icon: Users },
+        { path: '/tasks', label: 'Tasks', icon: FileText },
+        { path: '/expenses', label: 'Expenses', icon: CreditCard },
+        { path: '/chat', label: 'Chat', icon: MessageSquare },
+        { path: '/documents', label: 'Documents', icon: FileText },
+        { path: '/vendors', label: 'Vendors', icon: Store },
+        { path: '/reports', label: 'Reports', icon: BarChart },
+        { path: '/activity', label: 'Activity', icon: Activity },
+        { path: '/notifications', label: 'Notifications', icon: Bell },
+        { path: '/subscription', label: 'Subscription', icon: CreditCard },
+        { path: '/settings', label: 'Settings', icon: Settings },
     ];
 
     return (
@@ -102,7 +120,9 @@ const MainLayout = () => {
                                 JD
                             </div>
                             <div className="text-sm">
-                                <p className="font-semibold text-foreground">John Doe</p>
+                                <Link to="/profile">
+                                    <p className="font-semibold text-foreground hover:underline">John Doe</p>
+                                </Link>
                                 <p className="text-muted-foreground text-xs">Project Manager</p>
                             </div>
                         </div>
