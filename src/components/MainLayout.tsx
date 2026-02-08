@@ -10,10 +10,8 @@ import {
     LogOut,
     Menu,
     MessageSquare,
-    Pickaxe,
     Settings,
-    Store,
-    Users
+    Store
 } from 'lucide-react';
 import { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
@@ -32,8 +30,6 @@ const MainLayout = () => {
     const navItems = [
         { path: '/', label: 'Dashboard', icon: LayoutDashboard },
         { path: '/projects', label: 'Projects', icon: HardHat },
-        { path: '/materials', label: 'Materials', icon: Pickaxe },
-        { path: '/labor', label: 'Labor', icon: Users },
         { path: '/tasks', label: 'Tasks', icon: FileText },
         { path: '/expenses', label: 'Expenses', icon: CreditCard },
         { path: '/chat', label: 'Chat', icon: MessageSquare },
@@ -47,13 +43,13 @@ const MainLayout = () => {
     ];
 
     return (
-        <div className="flex h-screen bg-background overflow-hidden font-sans">
+        <div className="flex min-h-screen bg-background overflow-hidden font-sans">
             {/* Sidebar */}
             <aside
                 className={`${isSidebarOpen ? 'w-64' : 'w-20'
                     } bg-sidebar text-sidebar-foreground transition-all duration-300 flex flex-col shadow-xl z-20`}
             >
-                <div className="p-4 flex items-center justify-between border-b border-sidebar-border">
+                <div className="px-4  h-16 flex items-center justify-between border-b border-sidebar-border">
                     <div className={`flex items-center space-x-3 ${!isSidebarOpen && 'justify-center w-full'}`}>
                         <div className="bg-primary p-2 rounded-lg">
                             <HardHat className="w-6 h-6 text-primary-foreground" />
@@ -62,7 +58,7 @@ const MainLayout = () => {
                     </div>
                 </div>
 
-                <nav className="flex-1 overflow-y-auto py-4">
+                <nav className="flex-1 max-h-[calc(100vh-9.5rem)] overflow-y-auto hide-scrollbar py-4">
                     <ul className="space-y-2 px-3">
                         {navItems.map((item) => {
                             const Icon = item.icon;
@@ -71,19 +67,13 @@ const MainLayout = () => {
                                 <li key={item.path}>
                                     <Link
                                         to={item.path}
-                                        className={`flex items-center p-3 rounded-lg transition-all duration-200 group ${isActive
+                                        className={`flex relative items-center p-3 rounded-lg transition-all duration-200 group ${isActive
                                             ? 'bg-primary text-primary-foreground shadow-md'
                                             : 'text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                                             } ${!isSidebarOpen && 'justify-center'}`}
                                     >
                                         <Icon className={`w-5 h-5 ${isSidebarOpen && 'mr-3'}`} />
                                         {isSidebarOpen && <span className="font-medium">{item.label}</span>}
-
-                                        {!isSidebarOpen && (
-                                            <div className="absolute left-16 bg-popover text-popover-foreground text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none">
-                                                {item.label}
-                                            </div>
-                                        )}
                                     </Link>
                                 </li>
                             );
@@ -130,7 +120,7 @@ const MainLayout = () => {
                 </header>
 
                 {/* Scrollable Content Area */}
-                <div className="flex-1 overflow-auto p-6 scroll-smooth">
+                <div className="h-[calc(100vh-5rem)] hide-scrollbar  overflow-auto p-6 scroll-smooth">
                     <Outlet />
                 </div>
             </main>
